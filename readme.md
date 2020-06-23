@@ -9,9 +9,17 @@ Pull down the respository / download zip and extra it to your local computer
 * cd shopaholic
 * docker-compose build
 * docker-compose up
+
+
+##### Env/Database
+* cd into '/lumen-api' and duplicate the .env.example file. 
+* Rename it .env. 
+* Set db_host to 'lumen-db', db_database to 'lumen', db_username & db_password to 'root'
+* Generate JWT Secret: docker-compose exec lumen-api php artisan jwt:secret
 * docker-compose exec lumen-api php artisan migrate
 * docker-compose exec lumen-api php artisan db:seed
 * Visit http://localhost:8080/
+
 
 #### User Accounts
 ##### Customer: 
