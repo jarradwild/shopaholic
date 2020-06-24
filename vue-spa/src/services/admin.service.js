@@ -19,6 +19,10 @@ class AdminService {
   addOrderNote(data) {
     return axios.put(API_URL + 'orders/'+ data.id + '/add-note', {date: data.date, message: data.message}, { headers: authHeader() });
   }
+
+  getCustomerFromOrder(id) {
+    return axios.get(API_URL + 'orders/'+id+'/user', { headers: authHeader() });
+  }
 }
 
 export default new AdminService();

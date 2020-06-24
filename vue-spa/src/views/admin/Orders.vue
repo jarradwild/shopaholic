@@ -35,13 +35,14 @@ export default {
   components: {
     OrderStatus,
   },
+  created () {
+    this.$store.dispatch('user/clearOrders');
+    this.$store.dispatch('admin/getOrders');
+  },
   computed: {
     orders() {
       return this.$store.state.admin.orders;
     }
-  },
-  created () {
-    this.$store.dispatch('admin/getOrders');
   },
   mounted() {
   }

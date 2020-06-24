@@ -28,7 +28,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
         // Users 
         Route::get('users', 'UserController@index');
-        Route::get('users/{id}', 'UserController@show');
 
         // User Orders
         Route::get('my-orders', 'OrdersController@index');
@@ -40,5 +39,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         Route::put('admin/orders/{id}/status', ['middleware' => 'isAdmin', 'uses' => 'AdminController@updateStatus']);
         Route::put('admin/orders/{id}/add-note', ['middleware' => 'isAdmin', 'uses' => 'AdminController@addNote']);
         Route::delete('admin/orders/{id}', ['middleware' => 'isAdmin', 'uses' => 'AdminController@cancel']);
+        
+        Route::get('admin/orders/{id}/user', ['middleware' => 'isAdmin', 'uses' => 'AdminController@getCustomerFromOrder']);
     });
 });

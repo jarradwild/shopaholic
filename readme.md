@@ -3,7 +3,7 @@
 A basic web application using VueJS & Lumen with JWT authentication.
 
 ## Get started
-Pull down the respository / download zip and extra it to your local computer
+Pull down the respository / download zip and extract it to your local computer
 
 #### Set Up
 * cd shopaholic
@@ -14,7 +14,9 @@ Pull down the respository / download zip and extra it to your local computer
 ##### Env/Database
 * cd into '/lumen-api' and duplicate the .env.example file. 
 * Rename it .env. 
-* Set db_host to 'lumen-db', db_database to 'lumen', db_username & db_password to 'root'
+* Set db_host to 'lumen-db'
+* Set db_database to 'lumen'
+* Set db_username & db_password to 'root'
 * Generate JWT Secret: docker-compose exec lumen-api php artisan jwt:secret
 * docker-compose exec lumen-api php artisan migrate
 * docker-compose exec lumen-api php artisan db:seed

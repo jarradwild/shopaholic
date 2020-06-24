@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from '../store';
+import store from '../store/index';
 import router from '../router';
 
 export default function setup() {
@@ -32,6 +32,7 @@ export default function setup() {
         // New request with new token
         const config = error.config;
         config.headers['Authorization'] = `Bearer ${token}`;
+        localStorage.setItem('user', JSON.stringify(token))
 
         return new Promise((resolve, reject) => {
           axios.request(config).then(response => {
@@ -54,7 +55,7 @@ export default function setup() {
 //     error => {
 //       if (error.response.status === 401) {
 //         return store
-//           .dispatch('auth/logout')
+//           .dispatch('auth/logout', null, {root:true})
 //           .then(() => {
 //             router.push('/login');
 //           })

@@ -4,7 +4,8 @@ export const admin = {
   namespaced: true,
   state: {
     orders: [],
-    ordersLoaded: false
+    ordersLoaded: false,
+    orderUser: {}
   },
   getters: {
     getOrder: state => id => {
@@ -15,7 +16,7 @@ export const admin = {
     },
     totalOrders: state => {
       return state.orders.length;
-    }
+    },
   },
   actions: {
     getOrders({ state, commit}) {
@@ -69,6 +70,17 @@ export const admin = {
     clearOrders({commit}){
       commit('updateOrders', null);
       commit('ordersLoaded', false);
+    },
+    getCustomer({commit}, payload) {
+      return AdminService.getCustomerFromOrder(payload).then(
+        response => {
+          commit('orderUser', response.data.user);
+          return Promise.resolve(response);
+        },
+        error => {
+          return Promise.reject(error);
+        }
+      );
     }
   },
   mutations: {
@@ -83,6 +95,9 @@ export const admin = {
     },
     updateNotes(state, payload) {
       Object.assign(state.orders[payload.index], { notes: payload.notes })
+    },
+    orderUser(state, payload) {
+      state.orderUser = payload;
     }
   }
 };

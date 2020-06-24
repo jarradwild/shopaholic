@@ -9,7 +9,7 @@ export const auth = {
   namespaced: true,
   state: initialState,
   actions: {
-    login({ commit }, user) {
+    login({ commit, dispatch }, user) {
       return AuthService.login(user).then(
         user => {
           commit('loginSuccess', user.details);
@@ -23,7 +23,7 @@ export const auth = {
     },
     logout({ commit, dispatch }) {
       AuthService.logout();
-      dispatch('user/clearOrders', null, {root:true});
+      dispatch('user/clearOrders', [], {root:true});
       commit('logout');
     },
     register({ commit }, user) {
@@ -38,8 +38,8 @@ export const auth = {
         }
       );
     },
-    refresh({commit}){
-      return AuthService.refresh().then(
+    refresh({commit}, user){
+      return AuthService.refresh(user).then(
         response => {
           commit('loginRefresh');
           return Promise.resolve(response.data);

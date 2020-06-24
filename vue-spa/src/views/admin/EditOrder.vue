@@ -21,6 +21,10 @@
     <b-container>
       <b-row class="mb-3">
         <b-col cols="12" md="8">
+          <div v-if="this.user" class="mb-4">
+            <h6>Name: <strong>{{this.user.name}}</strong></h6>
+            <h6>Email: <strong>{{this.user.email}}</strong></h6>
+          </div>
           <h6>Description:</h6>
           <p>{{this.order.description}}</p>
           <div v-if="this.order.status == 'processing'" class="mt-4">
@@ -45,7 +49,7 @@
 
             <b-alert v-for="(note, index) in this.order.notes" :key="index" variant="info" class="mb-3" show>
               <h6 class="mb-0"><small>{{note.date}}</small></h6>
-              <p class="mb-0">{{note.message}}</p>
+              <p class="mb-0 text-break">{{note.message}}</p>
             </b-alert>
         </b-col>
       </b-row>
@@ -70,6 +74,7 @@ export default {
   },
   created () {
     this.$store.dispatch('admin/getOrders', this.$route.params.id);
+    this.$store.dispatch('admin/getCustomer', this.$route.params.id)
   },
   computed: {
     ...mapGetters('admin', ['getOrder','getOrderIndex']),
@@ -78,6 +83,9 @@ export default {
     },
     index () {
       return this.getOrderIndex(this.$route.params.id);
+    },
+    user () {
+      return this.$store.state.admin.orderUser;
     }
   },
   methods: {

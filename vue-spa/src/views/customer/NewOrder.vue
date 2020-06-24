@@ -12,11 +12,12 @@
           <b-col cols="12" md="8" lg="7">
             <b-form-group label="Title:" label-for="title" >
               <b-form-input v-model="newOrder.title" placeholder="Enter a title for the order" v-validate="'required'" name="title"></b-form-input>
-              <span>{{ errors.first('title') }}</span>
+              <span class="text-danger"><small>{{ errors.first('title') }}</small></span>
             </b-form-group>
 
             <b-form-group label="Description:" label-for="description" >
               <b-form-textarea name="description" v-model="newOrder.description" placeholder="What would you like to order?" rows="3" max-rows="6" v-validate="'required|max:75'"></b-form-textarea>
+              <span class="text-danger"><small>{{ errors.first('description') }}</small></span>
             </b-form-group>
             
             <b-button variant="primary" type="submit" :disabled="loading">
@@ -57,7 +58,6 @@ export default {
   },
   methods: {
     handleSubmit (evt) {
-      console.log(evt);
       this.loading = true;
       this.$validator.validateAll().then(isValid => {
         if (!isValid) {

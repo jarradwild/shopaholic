@@ -42,8 +42,8 @@ export const user = {
       );
     },
     clearOrders({commit}){
-      commit('updateOrders', '');
       commit('ordersLoaded', false);
+      commit('updateOrders', []);
     },
     addNewOrder({commit}, newOrder) {
       return UserService.postNewOrder(newOrder).then(
@@ -59,7 +59,6 @@ export const user = {
   },
   mutations: {
     updateOrders(state, orders) {
-      // state.orders = orders;
       Vue.set(state, 'orders', [...orders]);
     },
     ordersLoaded: (state, status) => {

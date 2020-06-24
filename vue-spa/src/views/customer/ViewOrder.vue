@@ -23,13 +23,13 @@
       <b-row class="mb-3">
         <b-col cols="12" md="8">
           <h6>Description:</h6>
-          <p>{{this.order.description}}</p>
+          <p class="text-break">{{this.order.description}}</p>
         </b-col>
         <b-col cols="12" md="4">
           <h6>Notes: </h6>
           <b-alert v-for="(note, index) in this.order.notes" :key="index" variant="info" class="mb-3" show>   
             <h6 class="mb-0"><small>{{note.date}}</small></h6>
-            <p class="mb-0">{{note.message}}</p>
+            <p class="mb-0 text-break">{{note.message}}</p>
           </b-alert>
         </b-col>
       </b-row>

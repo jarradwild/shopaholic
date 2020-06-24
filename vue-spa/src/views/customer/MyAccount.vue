@@ -11,7 +11,7 @@
           <b-list-group class="mb-3 mb-md-4">
             <b-list-group-item  class="d-md-flex flex-row justify-content-between align-items-center">
               <h6 class="mb-1 mb-md-0">Name</h6>
-              <h5 class="mb-0">{{currentUser.name}}</h5>
+              <h5 class="mb-0 text-capitalize">{{currentUser.name}}</h5>
             </b-list-group-item>
             <b-list-group-item  class="d-md-flex flex-row justify-content-between align-items-center">
               <h6 class="mb-1 mb-md-0">User ID:</h6>

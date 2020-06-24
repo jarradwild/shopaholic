@@ -27,23 +27,4 @@ class UserController extends Controller
          return response()->json(['users' =>  User::all()], 200);
     }
 
-    /**
-     * Get one user.
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        try {
-            $user = User::findOrFail($id);
-
-            return response()->json(['user' => $user], 200);
-
-        } catch (\Exception $e) {
-
-            return response()->json(['message' => 'User not found!'], 404);
-        }
-
-    }
-
 }

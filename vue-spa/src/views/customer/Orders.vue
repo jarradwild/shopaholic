@@ -50,7 +50,9 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('user/getOrders');
+    if (this.currentUser.role !== 2) {
+      this.$store.dispatch('user/getOrders');
+    }
   },
   mounted() {
     if (!this.currentUser) {

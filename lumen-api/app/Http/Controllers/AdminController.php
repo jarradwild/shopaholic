@@ -67,7 +67,10 @@ class AdminController extends Controller
       */
 
       public function updateStatus($id, Request $request){
-          
+        $this->validate($request, [
+            'status' => 'required|string',
+        ]);
+
         try {
 
             $order = Order::withTrashed()->where('id' , $id)->first();
@@ -95,9 +98,13 @@ class AdminController extends Controller
       */
 
       public function addNote($id, Request $request){
+        $this->validate($request, [
+            'date' => 'required|string',
+            'message' => 'required|string',
+        ]);
 
         try {
-
+            
             $newNote = [$request->all()];
             $order = Order::withTrashed()->where('id' , $id)->first();
 
@@ -112,4 +119,26 @@ class AdminController extends Controller
 
         }
       }
+
+
+
+    /**
+     * Get one user.
+     *
+     * @return Response
+     */
+    public function getCustomerFromOrder($id)
+    {
+        try {
+            $order = Order::findOrFail($id);
+            $user = User::findOrFail($order->user_id);
+
+            return response()->json(['user' => $user], 200);
+
+        } catch (\Exception $e) {
+
+            return response()->json(['message' => 'User not found!'], 404);
+        }
+
+    }
 }

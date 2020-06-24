@@ -81,7 +81,6 @@ export default {
   methods: {
     handleRegister() {
       this.loading = true;
-      console.log(this.user);
       this.$validator.validateAll().then(isValid => {
         if (!isValid) {
           this.loading = false;
