@@ -12,32 +12,22 @@
             <b-form name="form" @submit.prevent="handleRegister" class="text-left">
               <b-form-group label="Name:" label-for="name" >
                 <b-form-input v-model="user.name" name="name" type="text" placeholder="John Doe" v-validate="'required'"></b-form-input>
-
-                <b-alert variant="danger" class="mt-2" v-if="errors.has('name')" show>
-                  Name is required!
-                </b-alert>
+                <span class="text-danger" v-if="errors.has('name')"><small>Name is required!</small></span>
               </b-form-group>
 
               <b-form-group label="Email Address:" label-for="email" >
                 <b-form-input v-model="user.email" name="email" type="email" placeholder="john@doe.com" v-validate="'required'"></b-form-input>
-
-                <b-alert variant="danger" class="mt-2" v-if="errors.has('email')" show>
-                  Email Address is required!
-                </b-alert>
+                <span class="text-danger" v-if="errors.has('email')"><small>Email Address is required!</small></span>
               </b-form-group>
 
               <b-form-group label="Password:" label-for="password" >
                 <b-form-input v-model="user.password" name="password" type="password" v-validate="'required'"></b-form-input>
-                 <b-alert variant="danger" class="mt-2" v-if="errors.has('password')" show>
-                  Password is required!
-                </b-alert>
+                <span class="text-danger" v-if="errors.has('password')"><small>Password is required!</small></span>
               </b-form-group>
 
               <b-form-group label="Confirm Password:" label-for="password_confirmation" >
                 <b-form-input v-model="user.password_confirmation" name="password_confirmation" type="password" v-validate="'required'"></b-form-input>
-                 <b-alert variant="danger" class="mt-2" v-if="errors.has('password')" show>
-                  Password Confirmation is required!
-                </b-alert>
+                <span class="text-danger" v-if="errors.has('password_confirmation')"><small>Password Confirmation is required!</small></span>
               </b-form-group>
 
 

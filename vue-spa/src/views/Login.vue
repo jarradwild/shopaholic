@@ -13,17 +13,12 @@
 
               <b-form-group label="Email Address:" label-for="email" >
                 <b-form-input v-model="user.email" name="email" type="email" placeholder="john@doe.com" v-validate="'required'"></b-form-input>
-
-                <b-alert variant="danger" class="mt-2" v-if="errors.has('email')" show>
-                  Email Address is required!
-                </b-alert>
+                <span class="text-danger" v-if="errors.has('email')"><small>Email Address is required!</small></span>
               </b-form-group>
 
               <b-form-group label="Password:" label-for="password" >
                 <b-form-input v-model="user.password" name="password" type="password" v-validate="'required'"></b-form-input>
-                 <b-alert variant="danger" class="mt-2" v-if="errors.has('password')" show>
-                  Password is required!
-                </b-alert>
+                <span class="text-danger" v-if="errors.has('password')"><small>Password is required!</small></span>
               </b-form-group>
 
               <b-button variant="primary" :block="true" type="submit" :disabled="loading">
